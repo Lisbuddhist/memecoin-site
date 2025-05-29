@@ -1,30 +1,149 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My MemeCoin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BOMS — Bite the Dip</title>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet">
   <style>
-    body { font-family: sans-serif; text-align: center; padding: 2rem; background: #fdfdfd; }
-    h1 { color: #222; }
-    .contract { font-family: monospace; background: #eee; padding: 0.5rem; border-radius: 5px; display: inline-block; }
-    .socials a { margin: 0 1rem; text-decoration: none; color: #0070f3; }
-    .logo { margin-top: 2rem; }
+    body {
+      margin: 0;
+      font-family: 'Baloo 2', cursive;
+      background: linear-gradient(to bottom, #00bcd4, #2196f3);
+      color: #fff;
+      text-align: center;
+      padding: 40px 20px;
+      overflow-x: hidden;
+    }
+    .decor {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      background-image: url('swirls.svg');
+      background-repeat: repeat;
+      opacity: 0.1;
+      z-index: 0;
+    }
+    .clouds {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 150px;
+      overflow: visible;
+      z-index: 1;
+    }
+    .clouds img {
+      position: absolute;
+      width: 80px;
+      animation: float 20s linear infinite;
+    }
+    .clouds img:nth-child(2) {
+      left: 30%;
+      animation-delay: 3s;
+    }
+    .clouds img:nth-child(3) {
+      left: 60%;
+      animation-delay: 6s;
+    }
+    @keyframes float {
+      0% { transform: translateY(0px) rotate(0deg); top: -40px; }
+      50% { transform: translateY(10px) rotate(10deg); }
+      100% { transform: translateY(0px) rotate(-10deg); top: -40px; }
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .logo {
+      max-width: 250px;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-size: 3em;
+      margin: 0;
+    }
+    .slogan {
+      font-size: 1.5em;
+      margin-bottom: 30px;
+      color: #ffeb3b;
+    }
+    .contract {
+      background: #fff;
+      color: #000;
+      padding: 10px 20px;
+      font-family: monospace;
+      display: inline-block;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+    .contract button {
+      margin-left: 10px;
+      background: #2196f3;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .buttons a {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 20px;
+      border-radius: 8px;
+      background: #ff9800;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: transform 0.2s;
+    }
+    .buttons a:hover {
+      transform: scale(1.1);
+      background: #f57c00;
+    }
+    footer {
+      margin-top: 60px;
+      font-size: 0.9em;
+      opacity: 0.8;
+    }
   </style>
 </head>
 <body>
-  <h1>🚀 Welcome to MyMemeCoin.fun</h1>
-  <p>Smart Contract Address:</p>
-  <div class="contract">My_token_name</div>
-
-  <div class="socials" style="margin-top: 1.5rem;">
-    <a href="https://twitter.com/placeholder" target="_blank">Twitter</a>
-    <a href="https://t.me/placeholder" target="_blank">Telegram</a>
-    <a href="https://dexscreener.com" target="_blank">Chart</a>
+  <div class="decor"></div>
+  <div class="clouds">
+    <img src="crouton.png" style="left:10%">
+    <img src="crouton.png" style="left:40%">
+    <img src="crouton.png" style="left:70%">
   </div>
 
-  <div class="logo">
-    <img src="logo.png" alt="Token Logo" width="150" />
+  <div class="content">
+    <img src="logo.png" alt="BOMS logo" class="logo" />
+    <h1>BOMS</h1>
+    <div class="slogan">Bite the Dip</div>
+    <div class="contract">
+      Contract: <span id="contract">my_token_contract</span>
+      <button onclick="copyContract()">Copy</button>
+    </div>
+    <div class="buttons">
+      <a href="#" target="_blank">Twitter</a>
+      <a href="#" target="_blank">Telegram</a>
+      <a href="#" target="_blank">DEX Chart</a>
+      <a href="#" target="_blank">Buy BOMS</a>
+    </div>
+    <footer>© BOMS 2025</footer>
   </div>
+
+  <script>
+    function copyContract() {
+      const text = document.getElementById("contract").innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Contract copied to clipboard!");
+      });
+    }
+  </script>
 </body>
 </html>
