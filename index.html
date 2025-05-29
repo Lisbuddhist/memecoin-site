@@ -18,27 +18,23 @@
     }
     .clouds {
       position: absolute;
-      top: 120px; /* ниже на экране */
+      top: 80px;
       width: 100%;
-      height: 200px;
+      height: 300px;
       overflow: visible;
       z-index: 1;
     }
     .clouds img {
       position: absolute;
       width: 80px;
-      animation: drift 12s ease-in-out infinite alternate;
+      animation: bounce 6s ease-in-out infinite alternate;
     }
-    .clouds img:nth-child(2) { left: 20%; animation-delay: 1s; }
-    .clouds img:nth-child(3) { left: 35%; animation-delay: 2.5s; }
-    .clouds img:nth-child(4) { left: 50%; animation-delay: 4s; }
-    .clouds img:nth-child(5) { left: 65%; animation-delay: 5s; }
-    .clouds img:nth-child(6) { left: 80%; animation-delay: 6.5s; }
-
-    @keyframes drift {
-      0%   { transform: translateX(0) translateY(0) rotate(0deg); opacity: 1; }
-      50%  { transform: translateX(25px) translateY(20px) rotate(10deg); opacity: 0.9; }
-      100% { transform: translateX(-20px) translateY(-10px) rotate(-8deg); opacity: 1; }
+    @keyframes bounce {
+      0%   { transform: translateY(0px) rotate(0deg); opacity: 1; }
+      25%  { transform: translateY(20px) rotate(10deg); }
+      50%  { transform: translateY(-15px) rotate(-8deg); }
+      75%  { transform: translateY(10px) rotate(5deg); }
+      100% { transform: translateY(0px) rotate(0deg); opacity: 1; }
     }
 
     .content {
@@ -95,15 +91,23 @@
   </style>
 </head>
 <body>
-  <div class="clouds">
-    <img src="crouton.png" style="left:10%">
-    <img src="crouton.png">
-    <img src="crouton.png">
-    <img src="crouton.png">
-    <img src="crouton.png">
-    <img src="crouton.png">
-  </div>
-
+<div class="clouds">
+  <img src="crouton.png" style="left:5%; top:0px; animation-delay:0.0s;">
+  <img src="crouton.png" style="left:15%; top:0px; animation-delay:0.6s;">
+  <img src="crouton.png" style="left:25%; top:0px; animation-delay:1.2s;">
+  <img src="crouton.png" style="left:35%; top:0px; animation-delay:1.8s;">
+  <img src="crouton.png" style="left:45%; top:0px; animation-delay:2.4s;">
+  <img src="crouton.png" style="left:55%; top:0px; animation-delay:3.0s;">
+  <img src="crouton.png" style="left:65%; top:0px; animation-delay:3.6s;">
+  <img src="crouton.png" style="left:75%; top:0px; animation-delay:4.2s;">
+  <img src="crouton.png" style="left:10%; top:50px; animation-delay:4.8s;">
+  <img src="crouton.png" style="left:20%; top:50px; animation-delay:5.4s;">
+  <img src="crouton.png" style="left:30%; top:50px; animation-delay:6.0s;">
+  <img src="crouton.png" style="left:50%; top:50px; animation-delay:6.6s;">
+  <img src="crouton.png" style="left:60%; top:50px; animation-delay:7.2s;">
+  <img src="crouton.png" style="left:70%; top:50px; animation-delay:7.8s;">
+  <img src="crouton.png" style="left:80%; top:50px; animation-delay:8.4s;">
+</div>
   <div class="content">
     <img src="logo.png" alt="BOMS logo" class="logo" />
     <h1>BOMS</h1>
