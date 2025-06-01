@@ -1,59 +1,81 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
   <title>BOMS — Bite the Dip</title>
   <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
   <style>
-    body {
+    html, body {
       margin: 0;
       font-family: 'Chewy', cursive;
-      background: linear-gradient(to bottom, #00bcd4, #2196f3);
+      background:
+        url('swirls.svg') repeat,
+        linear-gradient(to bottom, #00bcd4, #2196f3);
+      background-size: 40px;
+      background-blend-mode: lighten;
       color: #fff;
       text-align: center;
       padding: 40px 20px;
       overflow-x: hidden;
     }
+
     .clouds {
-      position: absolute;
-      top: 80px;
+      position: relative;
       width: 100%;
-      height: 400px;
-      overflow: visible;
-      z-index: 1;
+      height: 200px;
+      z-index: 3;
+      pointer-events: none;
     }
+
     .clouds img {
       position: absolute;
+      left: var(--left);
+      top: var(--start-top, 0);
       width: 10vw;
       max-width: 80px;
-      animation: bounce 6s ease-in-out infinite alternate;
+      opacity: 0;
+      animation:
+        fly-in 0.6s ease-out var(--delay) forwards,
+        bounce 6s ease-in-out infinite alternate calc(var(--delay) + 0.6s);
+      z-index: 4;
     }
+
+    @keyframes fly-in {
+      from { opacity: 0; }
+      to { top: var(--end-top); opacity: 1; }
+    }
+
     @keyframes bounce {
-      0%   { transform: translateY(0px) rotate(0deg); opacity: 1; }
+      0%   { transform: translateY(0px) rotate(0deg); }
       25%  { transform: translateY(20px) rotate(10deg); }
       50%  { transform: translateY(-15px) rotate(-8deg); }
       75%  { transform: translateY(10px) rotate(5deg); }
-      100% { transform: translateY(0px) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(0px) rotate(0deg); }
     }
 
     .content {
       position: relative;
       z-index: 2;
       max-width: 600px;
-      margin: 0 auto;
+      margin: -150px auto 0;
+      padding-top: 20px;
+      flex-grow: 1;
     }
+
     .logo {
+      display: block;
       width: 80%;
       max-width: 250px;
-      height: auto;
-      margin-bottom: 20px;
+      margin: 0 auto 10px;
     }
+
     .slogan {
       font-size: 1.5em;
       margin-bottom: 30px;
       color: #ffeb3b;
     }
+
     .contract {
       background: #fff;
       color: #000;
@@ -65,104 +87,157 @@
       font-size: 0.9em;
       word-wrap: break-word;
     }
+
     .contract button {
       margin-left: 10px;
       background: #2196f3;
-      color: white;
+      color: #fff;
       border: none;
       padding: 5px 10px;
       border-radius: 5px;
       cursor: pointer;
     }
+
     .buttons {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
     }
+
     .buttons a {
-      display: inline-block;
       margin: 10px;
       padding: 12px 20px;
       border-radius: 8px;
       background: #ff9800;
-      color: white;
+      color: #fff;
       text-decoration: none;
       font-weight: bold;
       transition: transform 0.2s;
       font-size: 0.9em;
     }
+
     .buttons a:hover {
       transform: scale(1.1);
       background: #f57c00;
     }
+
     footer {
       margin-top: 40px;
       font-size: 0.8em;
       opacity: 0.8;
     }
 
+    .audio-btn {
+      background: #ffeb3b;
+      color: #000;
+      font-family: 'Chewy', cursive;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 1em;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .audio-btn:hover {
+      background: #fff176;
+      transform: scale(1.05);
+    }
+
+    .audio-controls {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 999;
+      display: flex;
+      gap: 10px;
+    }
+
     @media (max-width: 768px) {
-      .slogan {
-        font-size: 1.2em;
-      }
-      .contract {
-        font-size: 0.8em;
-        padding: 8px 12px;
-      }
-      .buttons a {
-        width: 90%;
-        font-size: 1em;
-      }
+      .slogan { font-size: 1.2em; }
+      .contract { font-size: 0.8em; padding: 8px 12px; }
+      .buttons a { width: 90%; font-size: 1em; }
     }
   </style>
 </head>
 <body>
-<div class="clouds">
-  <img src="crouton.png" style="left: 2%;  top:  50px; animation-delay: 0s;">
-  <img src="crouton.png" style="left:17%;  top:  50px; animation-delay: 0.3s;">
-  <img src="crouton.png" style="left:32%;  top:  50px; animation-delay: 0.6s;">
-  <img src="crouton.png" style="left:47%;  top:  -100px; animation-delay: 0.9s;">
-  <img src="crouton.png" style="left:62%;  top:  50px; animation-delay: 1.2s;">
-  <img src="crouton.png" style="left:77%;  top:  50px; animation-delay: 1.5s;">
-  <img src="crouton.png" style="left:92%;  top:  50px; animation-delay: 1.8s;">
+  <div class="clouds"></div>
 
-  <img src="crouton.png" style="left:12%;  top: 210px; animation-delay: 2.1s;">
-  <img src="crouton.png" style="left:32%;  top: 210px; animation-delay: 2.4s;">
-  <img src="crouton.png" style="left:47%;  top: 210px; animation-delay: 2.7s;">
-  <img src="crouton.png" style="left:62%;  top: 210px; animation-delay: 3.0s;">
-  <img src="crouton.png" style="left:82%;  top: 210px; animation-delay: 3.3s;">
+  <div class="content">
+    <img src="logo.png" alt="BOMS logo" class="logo" />
+    <h1>BOMS</h1>
+    <div class="slogan">Bite the Dip</div>
+    <div class="contract">
+      Contract: <span id="contract">my_token_contract</span>
+      <button onclick="copyContract()">Copy</button>
+    </div>
+    <div class="buttons">
+      <a href="#" target="_blank">Twitter</a>
+      <a href="#" target="_blank">Telegram</a>
+      <a href="#" target="_blank">DEX Chart</a>
+      <a href="#" target="_blank">Buy BOMS</a>
+    </div>
+    <footer>© BOMS 2025</footer>
+  </div>
 
-  <img src="crouton.png" style="left: 2%;  top: 370px; animation-delay: 3.6s;">
-  <img src="crouton.png" style="left:17%;  top: 370px; animation-delay: 3.9s;">
-  <img src="crouton.png" style="left:32%;  top: 370px; animation-delay: 4.2s;">
-  <img src="crouton.png" style="left:47%;  top: 370px; animation-delay: 4.5s;">
-  <img src="crouton.png" style="left:62%;  top: 370px; animation-delay: 4.8s;">
-  <img src="crouton.png" style="left:77%;  top: 370px; animation-delay: 5.1s;">
-  <img src="crouton.png" style="left:92%;  top: 370px; animation-delay: 5.4s;">
-</div>
-<div class="content">
-  <img src="logo.png" alt="BOMS logo" class="logo" />
-  <h1>BOMS</h1>
-  <div class="slogan">Bite the Dip</div>
-  <div class="contract">
-    Contract: <span id="contract">my_token_contract</span>
-    <button onclick="copyContract()">Copy</button>
+  <!-- 🎵 Audio and Buttons -->
+  <audio id="theme-audio" src="C:\Users\3stri\OneDrive\Desktop\memecoin-site\Boms-boms!.mp3"></audio>
+  <div class="audio-controls">
+    <button id="playButton" class="audio-btn">Play Music</button>
+    <button id="resetButton" class="audio-btn">⏹</button>
   </div>
-  <div class="buttons">
-    <a href="#" target="_blank">Twitter</a>
-    <a href="#" target="_blank">Telegram</a>
-    <a href="#" target="_blank">DEX Chart</a>
-    <a href="#" target="_blank">Buy BOMS</a>
-  </div>
-  <footer>© BOMS 2025</footer>
-</div>
-<script>
-  function copyContract() {
-    const text = document.getElementById("contract").innerText;
-    navigator.clipboard.writeText(text).then(() => {
-      alert("Contract copied to clipboard!");
+
+  <script>
+    function copyContract() {
+      const text = document.getElementById("contract").innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Contract copied to clipboard!");
+      });
+    }
+
+    (function() {
+      const coords = [
+        ['2%',  '80px', 0], ['17%', '80px', 0.3], ['32%', '80px', 0.6],
+        ['62%', '80px', 1.2], ['77%', '80px', 1.5], ['92%', '80px', 1.8],
+        ['12%', '190px', 2.1], ['32%', '190px', 2.4], ['62%', '190px', 3.0],
+        ['82%', '190px', 3.3], ['2%',  '300px', 3.6], ['17%', '300px', 3.9],
+        ['32%', '300px', 4.2], ['47%', '300px', 4.5], ['62%', '300px', 4.8],
+        ['77%', '300px', 5.1], ['92%', '300px', 5.4]
+      ];
+
+      const container = document.querySelector('.clouds');
+      coords.forEach(([left, endTop, delay]) => {
+        const img = document.createElement('img');
+        img.src = 'crouton.png';
+        img.style.setProperty('--left', left);
+        img.style.setProperty('--end-top', endTop);
+        img.style.setProperty('--delay', delay + 's');
+        img.style.setProperty('--start-top', '0px');
+        container.append(img);
+      });
+    })();
+
+    // 🎵 Управление аудио
+    const audio = document.getElementById('theme-audio');
+    const playBtn = document.getElementById('playButton');
+    const resetBtn = document.getElementById('resetButton');
+
+    playBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        playBtn.textContent = 'Pause Music';
+      } else {
+        audio.pause();
+        playBtn.textContent = 'Play Music';
+      }
     });
-  }
-</script>
+
+    resetBtn.addEventListener('click', () => {
+      audio.pause();
+      audio.currentTime = 0;
+      playBtn.textContent = 'Play Music';
+    });
+  </script>
 </body>
 </html>
