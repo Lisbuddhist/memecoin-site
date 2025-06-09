@@ -4,6 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>BOMS — Bite the Dip</title>
+  <!-- Favicon icons -->
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="favicon-16.png" sizes="16x16" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
   <style>
     /* Base styling and fixed background */
@@ -51,7 +54,6 @@
     .c1  { --left: 2vw;  --end-top: 6vh;  --delay: 0s; }
     .c2  { --left: 17vw; --end-top: 6vh;  --delay: 0.3s; }
     .c3  { --left: 32vw; --end-top: 6vh;  --delay: 0.6s; }
-    .c4  { --left: 47vw; --end-top: -10vh;--delay: 0.9s; }
     .c5  { --left: 62vw; --end-top: 6vh;  --delay: 1.2s; }
     .c6  { --left: 77vw; --end-top: 6vh;  --delay: 1.5s; }
     .c7  { --left: 92vw; --end-top: 6vh;  --delay: 1.8s; }
@@ -147,20 +149,12 @@
   <audio id="theme-audio" src="Boms-boms!.mp3"></audio>
   <script>
     function copyContract() {
-      navigator.clipboard.writeText(document.getElementById('contract').innerText).then(() => alert('Copied!'));
-    }
+      navigator.clipboard.writeText(document.getElementById('contract').innerText).then(() => alert('Copied!'));}
     const audio = document.getElementById('theme-audio');
     const playBtn = document.getElementById('playButton');
     const resetBtn = document.getElementById('resetButton');
-    playBtn.addEventListener('click', () => {
-      if (audio.paused) { audio.play(); playBtn.textContent = 'Pause Music'; }
-      else { audio.pause(); playBtn.textContent = 'Play Music'; }
-    });
-    resetBtn.addEventListener('click', () => {
-      audio.pause();
-      audio.currentTime = 0;
-      playBtn.textContent = 'Play Music';
-    });
+    playBtn.addEventListener('click', () => {if (audio.paused) { audio.play(); playBtn.textContent = 'Pause Music'; } else { audio.pause(); playBtn.textContent = 'Play Music'; }});
+    resetBtn.addEventListener('click', () => {audio.pause(); audio.currentTime = 0; playBtn.textContent = 'Play Music';});
   </script>
 </body>
 </html>
