@@ -4,12 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>BOMS — Bite the Dip</title>
-  <!-- Favicon icons -->
   <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
   <link rel="icon" href="favicon-16.png" sizes="16x16" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Chewy&display=swap" rel="stylesheet">
   <style>
-    /* Base styling and fixed background */
     html, body {
       margin: 0;
       padding: 0;
@@ -27,7 +25,6 @@
     }
     *, *::before, *::after { box-sizing: inherit; }
 
-    /* Croutons floating layer above content */
     .clouds {
       position: absolute;
       top: 0;
@@ -50,7 +47,6 @@
         fly-in 0.6s ease-out var(--delay) forwards,
         bounce 6s ease-in-out infinite alternate calc(var(--delay) + 0.6s);
     }
-    /* Per-crouton custom properties */
     .c1  { --left: 2vw;  --end-top: 6vh;  --delay: 0s; }
     .c2  { --left: 17vw; --end-top: 6vh;  --delay: 0.3s; }
     .c3  { --left: 32vw; --end-top: 6vh;  --delay: 0.6s; }
@@ -82,7 +78,6 @@
       100% { transform: translateY(0px) rotate(0deg); }
     }
 
-    /* Main content */
     .content {
       position: relative;
       z-index: 2;
@@ -92,16 +87,57 @@
     }
     .logo { width: 80%; max-width: 250px; margin-bottom: 20px; }
     .slogan { font-size: 1.5em; margin-bottom: 30px; color: #ffeb3b; }
-    .contract { background: #fff; color: #000; padding: 10px 20px; font-family: monospace; display: inline-block; border-radius: 5px; margin-bottom: 20px; font-size: 0.9em; word-wrap: break-word; }
-    .contract button { margin-left: 10px; background: #2196f3; color: #fff; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; }
+
+    .contract {
+      background: #fff;
+      color: #000;
+      padding: 10px 20px;
+      font-family: monospace;
+      display: inline-block;
+      border-radius: 5px;
+      font-size: 0.9em;
+      word-wrap: break-word;
+    }
+    .contract button {
+      margin-left: 40px;
+      background: #2196f3;
+      color: #fff;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .buy-btn {
+      background: #00FF00;
+      color: #000;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: transform 0.2s, background 0.2s;
+      display: inline-block;
+      margin-left: 15px;
+      font-size: 0.9em;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+    .buy-btn:hover { background: #43a047; transform: scale(1.05); }
+
     .buttons { display: flex; flex-wrap: wrap; justify-content: center; margin-bottom: 40px; }
     .buttons a { margin: 10px; padding: 12px 20px; border-radius: 8px; background: #ff9800; color: #fff; text-decoration: none; font-weight: bold; transition: transform 0.2s; font-size: 0.9em; }
     .buttons a:hover { transform: scale(1.1); background: #f57c00; }
+
     .audio-controls { display: flex; justify-content: center; gap: 10px; margin-bottom: 40px; }
     .audio-btn { background: #ffeb3b; color: #000; padding: 12px 20px; border: none; border-radius: 30px; font-family: 'Chewy', cursive; cursor: pointer; font-size: 1em; box-shadow: 0 0 10px rgba(0,0,0,0.2); transition: background 0.3s, transform 0.2s; }
     .audio-btn:hover { background: #fff176; transform: scale(1.05); }
+
     footer { margin-top: 20px; font-size: 0.8em; opacity: 0.8; }
-    @media (max-width: 768px) { .slogan { font-size: 1.2em; } .contract { font-size: 0.8em; padding: 8px 12px; } .buttons a { width: 90%; font-size: 1em; } }
+
+    @media (max-width: 768px) {
+      .slogan { font-size: 1.2em; }
+      .contract { font-size: 0.8em; padding: 8px 12px; }
+      .buttons a { width: 90%; font-size: 1em; }
+    }
   </style>
 </head>
 <body>
@@ -126,35 +162,58 @@
     <img src="crouton.png" class="c18">
     <img src="crouton.png" class="c19">
   </div>
+
   <div class="content">
     <img src="logo.png" alt="BOMS logo" class="logo" />
     <h1>BOMS</h1>
     <div class="slogan">Bite the Dip</div>
-    <div class="contract">
-      Contract: <span id="contract">my_token_contract</span>
-      <button onclick="copyContract()">Copy</button>
+
+    <div style="display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:30px;">
+      <div class="contract">
+        Contract: <span id="contract">DKtmVa3ui5nZ56Hn4HMdpkCyx8W1zsxtpromrgL4BomS</span>
+        <button onclick="copyContract()">Copy</button>
+      </div>
+      <a href="https://your-buy-link.com" target="_blank" rel="noopener noreferrer" class="buy-btn">Buy&nbsp;BOMS</a>
     </div>
+
     <div class="buttons">
-      <a href="https://twitter.com/your_project" target="_blank" rel="noopener noreferrer">Twitter</a>
+      <a href="https://x.com/BomsFun" target="_blank" rel="noopener noreferrer">Twitter</a>
       <a href="https://t.me/bitethedip" target="_blank" rel="noopener noreferrer">Telegram</a>
-      <a href="https://dexscreener.com/your-token" target="_blank" rel="noopener noreferrer">DEX Chart</a>
-      <a href="https://your-buy-link.com" target="_blank" rel="noopener noreferrer">Buy BOMS</a>
+      <a href="https://www.tiktok.com/@bomsfun" target="_blank" rel="noopener noreferrer">TikTok</a>
+      <a href="https://www.youtube.com/@BomsFun" target="_blank" rel="noopener noreferrer">YouTube</a>
     </div>
+
     <div class="audio-controls">
       <button id="playButton" class="audio-btn">Play Music</button>
       <button id="resetButton" class="audio-btn">⏹</button>
     </div>
+
     <footer>© BOMS 2025</footer>
   </div>
+
   <audio id="theme-audio" src="Boms-boms!.mp3"></audio>
   <script>
     function copyContract() {
-      navigator.clipboard.writeText(document.getElementById('contract').innerText).then(() => alert('Copied!'));}
+      navigator.clipboard.writeText(document.getElementById('contract').innerText).then(() => alert('Copied!'));
+    }
     const audio = document.getElementById('theme-audio');
     const playBtn = document.getElementById('playButton');
     const resetBtn = document.getElementById('resetButton');
-    playBtn.addEventListener('click', () => {if (audio.paused) { audio.play(); playBtn.textContent = 'Pause Music'; } else { audio.pause(); playBtn.textContent = 'Play Music'; }});
-    resetBtn.addEventListener('click', () => {audio.pause(); audio.currentTime = 0; playBtn.textContent = 'Play Music';});
+
+    playBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        playBtn.textContent = 'Pause Music';
+      } else {
+        audio.pause();
+        playBtn.textContent = 'Play Music';
+      }
+    });
+    resetBtn.addEventListener('click', () => {
+      audio.pause();
+      audio.currentTime = 0;
+      playBtn.textContent = 'Play Music';
+    });
   </script>
 </body>
 </html>
